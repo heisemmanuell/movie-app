@@ -5,10 +5,25 @@ import { ClipLoader } from 'react-spinners';
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState('');
 
   function getStarted(e){
       e.preventDefault();
-      setLoading(true);
+      try {
+        setLoading(true);
+        localStorage.setItem('email',email);
+        window.location.href='/signup'
+      } catch (error) {
+        console.log('error, user registration failed')
+        console.log(error)
+      }finally{
+        setLoading(false);
+        setEmail('');
+      }
+  }
+
+  function handleEmailChange(e){
+      setEmail(e.target.value);
   }
   return (
    <main id='movie-app'>
@@ -34,8 +49,8 @@ export default function Home() {
 
     <div id='get-started'>
       <form onSubmit={getStarted}>
-        <input type='email' placeholder='example@gmail.com'></input>
-        <button type='submit'><ClipLoader loading={loading} size={10} color='#fff'/> Get Started</button>
+        <input type='email' value={email} onChange={handleEmailChange} placeholder='example@gmail.com'></input>
+        <button type='submit' disabled={loading}><ClipLoader loading={loading} size={10} color='#fff'/> Get Started</button>
       </form>
     </div>
    </main>
