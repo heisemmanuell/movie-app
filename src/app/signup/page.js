@@ -17,9 +17,22 @@ export default function Home() {
         },[]
         ); 
 
-    function handleSignup(){
+   async function handleSignup(e){
+    e.preventDefault();
         try {
-            setLoading(true); //code to process signup
+            setLoading(true);
+
+            if (!fullname && !email && !password) {
+                alert('please provide your fullname, email and password');
+                return;
+            }
+            //code to process signup
+            
+            localStorage.setItem('fullname',fullname);
+            localStorage.setItem('email',email);
+            localStorage.setItem('password',password);
+
+            window.location.href = "/login";
         } catch (error) {
             console.log(error);
         }finally{
@@ -29,6 +42,7 @@ export default function Home() {
             setFullname('');
         }
     }
+    
     return (
      <main className = "signup">
       

@@ -11,8 +11,17 @@ export default function Home() {
       e.preventDefault();
       try {
         setLoading(true);
-        localStorage.setItem('email',email);
-        window.location.href='/signup'
+        // code to process signup
+        const user_email = localStorage.getItem('email');
+        if(user_email){
+          window.location.href = '/login';
+        }else{
+          localStorage.setItem('email',email);
+          window.location.href='/signup'
+        }
+
+        // localStorage.setItem('email',email);
+        // window.location.href='/signup'
       } catch (error) {
         console.log('error, user registration failed')
         console.log(error)
