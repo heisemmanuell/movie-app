@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
     const [fullname, setFullname] = useState('');
+    
     useEffect(() => {
         const user_fullname = localStorage.getItem('fullname');
         setFullname(user_fullname);

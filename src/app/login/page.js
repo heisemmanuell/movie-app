@@ -1,9 +1,11 @@
 'use client'
+import { useState } from 'react';
 import { FaPlaystation } from 'react-icons/fa';
 
 export default function Home() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     function handleLogin(e) {
         e.preventDefault();
@@ -45,7 +47,7 @@ export default function Home() {
 
         <div>
             <label>Password</label>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target)}required placeholder="******"></input>
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}required placeholder="******"></input>
         </div>
 
         <div className='submitbtn'>

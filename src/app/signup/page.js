@@ -1,4 +1,4 @@
-//sign up page
+//signup page
 'use client'
 import { useEffect, useState } from "react";
 import { FaPlaystation } from 'react-icons/fa';
@@ -8,17 +8,17 @@ export default function Home() {
     const [email, setEmail] = useState('');
     const [fullname, setFullname] = useState('');
     const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState('');
+    const [loading, setLoading] = useState(false);
 
     useEffect(
         () => { 
-            const retrieveEmail = localStorage.getItem('email');
-            setEmail(retrieveEmail);
-        },[]
+            const retriveEmail = localStorage.getItem('email');
+            setEmail(retriveEmail);
+        }, []
         ); 
 
-   async function handleSignup(e){
-    e.preventDefault();
+    function handleSignup(e){
+        e.preventDefault();
         try {
             setLoading(true);
 
@@ -31,7 +31,6 @@ export default function Home() {
             localStorage.setItem('fullname',fullname);
             localStorage.setItem('email',email);
             localStorage.setItem('password',password);
-
             window.location.href = "/login";
         } catch (error) {
             console.log(error);
@@ -45,7 +44,7 @@ export default function Home() {
     
     return (
      <main className = "signup">
-      
+      <div id='background'></div>
       <FaPlaystation color='#ff0000' size={60}/>
    
     

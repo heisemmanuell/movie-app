@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import  React, { useState } from 'react';
 import { FaPlaystation } from 'react-icons/fa';
 import { ClipLoader } from 'react-spinners'; 
 
@@ -9,22 +9,22 @@ export default function Home() {
 
   function getStarted(e){
       e.preventDefault();
+
       try {
         setLoading(true);
         // code to process signup
         const user_email = localStorage.getItem('email');
+
         if(user_email){
           window.location.href = '/login';
-        }else{
-          localStorage.setItem('email',email);
-          window.location.href='/signup'
+        } else {
+          localStorage.setItem('email', email);
+          window.location.href = '/signup';
         }
 
-        // localStorage.setItem('email',email);
-        // window.location.href='/signup'
       } catch (error) {
-        console.log('error, user registration failed')
-        console.log(error)
+        console.log('error, user registration failed');
+        console.log(error.message);
       }finally{
         setLoading(false);
         setEmail('');
@@ -34,6 +34,7 @@ export default function Home() {
   function handleEmailChange(e){
       setEmail(e.target.value);
   }
+
   return (
    <main id='movie-app'>
     <div id='background'>
